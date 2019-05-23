@@ -11,6 +11,19 @@ exports.get = (req, res, next) => {
     });
 };
 
+exports.getByName = (req, res, next) => {
+  Hero
+    .find({
+      name: req.params.name
+    })
+    .then(data => {
+      res.status(200).send(data);
+    })
+    .catch(e => {
+      res.status(400).send(e);
+    });
+};
+
 exports.post = (req, res, next) => {
   var hero = new Hero(req.body);
   hero
